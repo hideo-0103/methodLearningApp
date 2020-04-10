@@ -14,9 +14,31 @@
 
 1. gonを用いてrubyの変数をjsで使えるようにして、一致、不一致で正誤判定をする。
 1. DBからカテゴリーで条件を絞って引っ張ってきてランダムに出現させる。
-1. 問題のテーブルを作り、questionカラム、answerカラム、正誤判定カラム、カテゴリーカラムを用意しておく。
+1. 問題のテーブルを作り、questionカラム、answerカラム、カテゴリーカラムを用意しておく。
 1. カテゴリーはactive_hashを使う。
 1. 正答率テーブルを用意して正誤判定カラム、問題idを登録できるようにして、正答率を計算してから正当率の低いものを30%刻みで分けてそれを配列に入れて正答率の低い配列から出題するようにする。
   1. 10問(30%以下を全て)、20問(30%以下を6割、60%以下を3割、90%以下を1割)
 
+## DB設計
+
+#### questionテーブル
+
+| カラム名      |       データ型 |    オプション    |
+|:-----------------|------------------:|:------------------:|
+| question             |        text |        nullfalse        |
+| answer           |            text |       nullfalse       |
+| category               |      references |         foreginkey         |
+
+##### アソシエーション
+belongs_to category
+
+#### AccuracyJudgmentHistoryテーブル
+
+| カラム名      |       データ型 |    オプション    |
+|:-----------------|------------------:|:------------------:|
+| question             |        references |        foreginkey,nullfalse        |
+| judge           |            boolean |       nullfalse       |
+
+##### アソシエーション
+belongs_to category
 
