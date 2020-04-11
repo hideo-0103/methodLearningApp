@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: methodLearningApp_production
-  username: methodLearningApp
-  password: <%= ENV['METHODLEARNINGAPP_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
