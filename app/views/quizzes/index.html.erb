@@ -1,1 +1,12 @@
-hellow world
+<header>
+  <%if user_signed_in? == false %>
+    <%= link_to "サインアップ", new_user_session_path %>
+    <%= link_to "新規登録", new_user_registration_path %>
+  <% end%>
+</header>
+<div class="container">
+  <% @quizzes.each_with_index do |quiz, i| %>
+    <%= i+1 %>
+    <%= markdown(quiz.question).html_safe %>
+  <% end%>
+</div>
